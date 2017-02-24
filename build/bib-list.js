@@ -2522,20 +2522,21 @@ var bibtexify = (function($) {
         // adds links to the PDF or url of the item
         links: function(entryData) {
             var itemStr = '';
-            if (entryData.url && entryData.url.match(/.*\.pdf/)) {
-                itemStr += ' (<a title="PDF-version of this article" href="' +
-                            entryData.url + '" target="_blank">pdf<\/a>)';
-            } else if (entryData.url) {
-                itemStr += ' (<a title="This article online" href="' + entryData.url +
-                            '" target="_blank">link<\/a>)';
+	          if (entryData.pdf) {
+	              itemStr += ' [<a title="PDF-version of this article" href="' +
+			          entryData.pdf + '" target="_blank" class="pdflink">pdf<\/a>]';
+	          }
+            if (entryData.url) {
+                itemStr += ' [<a title="This article online" href="' + entryData.url +
+                            '" target="_blank" class="weblink">link<\/a>]';
             }
             return itemStr;
         },
         // adds the bibtex link and the opening div with bibtex content
         bibtex: function(entryData) {
             var itemStr = '';
-            itemStr += ' (<a title="This article as BibTeX" href="#" class="biblink">' +
-                        'bib</a>)<div class="bibinfo hidden">';
+            itemStr += ' [<a title="This article as BibTeX" href="#" class="biblink">' +
+                        'bib</a>]<div class="bibinfo hidden">';
             itemStr += '<a href="#" class="bibclose" title="Close">x</a><pre>';
             itemStr += '@' + entryData.entryType + "{" + entryData.cite + ",\n";
             $.each(entryData, function(key, value) {
