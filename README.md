@@ -70,7 +70,7 @@ The bibtexify function accepts an optional third parameter for configuration opt
 ## Building from source
 
 There is a Jakefile for building the combined and minified versions with [Jake](https://github.com/mde/jake)
-and a Makefile for building with make.
+and a Makefile for building with make. To build, run 'jake build'.
 
 
 ## Credits
