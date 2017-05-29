@@ -347,22 +347,16 @@ if(entryData.url){itemStr+=' [<a title="This article online" href="'+entryData.u
 return itemStr;},bibtex:function(entryData){var itemStr='';itemStr+=' [<a title="This article as BibTeX" href="#" class="biblink">'+'bib</a>]<div class="bibinfo hidden">';itemStr+='<a href="#" class="bibclose" title="Close">x</a><pre>';itemStr+='@'+entryData.entryType+"{"+entryData.cite+",\n";$.each(entryData,function(key,value){if(key=='author'){itemStr+='  author = { ';for(var index=0;index<value.length;index++){if(index>0){itemStr+=" and ";}
 itemStr+=value[index].last;}
 itemStr+=' },\n';}else if(key!='entryType'&&key!='cite'){itemStr+='  '+key+" = { "+value+" },\n";}});itemStr+="}</pre></div>";return itemStr;},tweet:function(entryData,bib){var itemStr=' (<a title="Tweet this article" href="http://twitter.com/share?url=';itemStr+=entryData.url;itemStr+='&via='+bib.options.tweet;itemStr+='&text=';var splitName=function(wholeName){var spl=wholeName.split(' ');return spl[spl.length-1];};var auth=entryData.author;if(auth.length==1){itemStr+=uriencode(splitName(auth[0].last));}else if(auth.length==2){itemStr+=uriencode(splitName(auth[0].last)+"%26"+splitName(auth[1].last));}else{itemStr+=uriencode(splitName(auth[0].last)+" et al");}
-itemStr+=": "+encodeURIComponent('"'+entryData.title+'"');itemStr+='" target="_blank">tweet</a>)';return itemStr;},inproceedings:function(entryData){return this.authors2html(entryData.author)+" ("+entryData.year+"). "+
-entryData.title+". In <em>"+entryData.booktitle+", pp. "+entryData.pages+
-((entryData.address)?", "+entryData.address:"")+".<\/em>";},article:function(entryData){return this.authors2html(entryData.author)+" ("+entryData.year+"). "+
-entryData.title+". <em>"+entryData.journal+", "+entryData.volume+
+itemStr+=": "+encodeURIComponent('"'+entryData.title+'"');itemStr+='" target="_blank">tweet</a>)';return itemStr;},inproceedings:function(entryData){return"<p><strong>"+entryData.title+"</strong></p>"+this.authors2html(entryData.author)+". In <em>"+entryData.booktitle+", pp. "+entryData.pages+
+((entryData.address)?", "+entryData.address:"")+".<\/em>";},article:function(entryData){return"<p><strong>"+entryData.title+"</strong></p>"+this.authors2html(entryData.author)+". <em>"+entryData.journal+", "+entryData.volume+
 ((entryData.number)?"("+entryData.number+")":"")+", "+"pp. "+entryData.pages+". "+
-((entryData.address)?entryData.address+".":"")+"<\/em>";},misc:function(entryData){return this.authors2html(entryData.author)+" ("+entryData.year+"). "+
-entryData.title+". "+
+((entryData.address)?entryData.address+".":"")+"<\/em>";},misc:function(entryData){return"<p><strong>"+entryData.title+"</strong></p>"+this.authors2html(entryData.author)+". "+
 ((entryData.howpublished)?entryData.howpublished+". ":"")+
-((entryData.note)?entryData.note+".":"");},mastersthesis:function(entryData){return this.authors2html(entryData.author)+" ("+entryData.year+"). "+
-entryData.title+". "+entryData.type+". "+
-entryData.organization+", "+entryData.school+".";},techreport:function(entryData){return this.authors2html(entryData.author)+" ("+entryData.year+"). "+
-entryData.title+". "+entryData.institution+". "+
-entryData.number+". "+entryData.type+".";},book:function(entryData){return this.authors2html(entryData.author)+" ("+entryData.year+"). "+" <em>"+entryData.title+"<\/em>, "+
+((entryData.note)?entryData.note+".":"");},mastersthesis:function(entryData){return"<p><strong>"+entryData.title+"</strong></p>"+this.authors2html(entryData.author)+". "+entryData.type+". "+
+entryData.organization+", "+entryData.school+".";},techreport:function(entryData){return"<p><strong>"+entryData.title+"</strong></p>"+this.authors2html(entryData.author)+". "+entryData.institution+". "+
+entryData.number+". "+entryData.type+".";},book:function(entryData){return"<p><strong>"+entryData.title+"</strong></p>"+this.authors2html(entryData.author)+
 entryData.publisher+", "+entryData.year+
-((entryData.issn)?", ISBN: "+entryData.issn+".":".");},inbook:function(entryData){return this.authors2html(entryData.author)+" ("+entryData.year+"). "+
-entryData.chapter+" in <em>"+entryData.title+"<\/em>, "+
+((entryData.issn)?", ISBN: "+entryData.issn+".":".");},inbook:function(entryData){return"<p><strong>"+entryData.chapter+"</strong></p>"+this.authors2html(entryData.author)+". In <em>"+entryData.title+"<\/em>, "+
 ((entryData.editor)?" Edited by "+entryData.editor+", ":"")+
 entryData.publisher+", pp. "+entryData.pages+""+
 ((entryData.series)?", <em>"+entryData.series+"<\/em>":"")+
