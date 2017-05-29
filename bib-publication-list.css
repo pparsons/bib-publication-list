@@ -33,4 +33,5 @@ div.bibinfo pre { clear:both; }
 .pdflink { color: #d9534f; }
 .weblink { color: #428bca; }
 .biblink { color: #5bc0de; }
+td p { font-size: 1.2em; margin: 8px 0px; }
 
